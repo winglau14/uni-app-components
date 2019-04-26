@@ -32,7 +32,7 @@
 4.方法定义与调用：<br/>
 ```$xslt
     components:{
-	    lotus-address":lotusAddress
+	    "lotus-address":lotusAddress
 	},
     methods: {
         //打开picker

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-	import {lotusAddressJson} from  "./lotusAddressJson.js";
+	import {lotusAddressJson} from  "../static/Winglau14-lotusAddress.js";
 	export default {
 		props:['lotusAddressData'],
 		data() {
@@ -200,5 +200,5 @@
 </script>
 
 <style lang="less">
-@import "./lotusAddress.css";
+@import "./Winglau14-lotusAddress.css";
 </style>

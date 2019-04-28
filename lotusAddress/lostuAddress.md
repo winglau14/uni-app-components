@@ -7,7 +7,7 @@
 ### 插件的方式引入使用
 1.xx.vue 
 ```$xslt
-    import lotusAddress from "../../components/Winglau14-lotusAddress/lWinglau14-lotusAddress.vue";
+    import lotusAddress from "../../components/Winglau14-lotusAddress/Winglau14-lotusAddress.vue";
 ```
 
 2.vue页面内引用：<br/>
@@ -24,7 +24,8 @@
                 provinceName:'广东省',
                 cityName:'广州市',
                 townName:'天河区',
-            }
+            },
+			region:''
         }
     }
 ```

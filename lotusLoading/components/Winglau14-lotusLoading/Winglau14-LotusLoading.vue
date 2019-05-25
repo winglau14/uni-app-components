@@ -12,7 +12,7 @@
     </view>
 </template>
 <style lang="less">
-    @import "./Winglau14-loutsLoading.less";
+    @import "./Winglau14-loutsLoading.css";
 </style>
 <script>
 

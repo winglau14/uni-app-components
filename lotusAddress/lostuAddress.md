@@ -42,6 +42,8 @@
         },
         //回传已选的省市区的值
         choseValue(res){
+			//res数据源包括已选省市区与省市区code
+			console.log(res);
             this.lotusAddressData.visible = res.visible;//visible为显示与关闭组件标识true显示false隐藏
             //res.isChose = 1省市区已选 res.isChose = 0;未选
             if(res.isChose){

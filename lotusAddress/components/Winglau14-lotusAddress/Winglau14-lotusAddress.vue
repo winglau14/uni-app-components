@@ -48,10 +48,16 @@
 		methods:{
 			//取消
 			cancelPicker(){
+				const provinceCode = this.getTarId(this.provinceName);
+				const cityCode = this.getTarId(this.cityName);
+				const townCode = this.getTarId(this.townName);
 				this.$emit("choseVal",{
 					provice:this.provinceName,
+					provinceCode,
 					city:this.cityName,
+					cityCode,
 					town:this.townName,
+					townCode,
 					isChose:0,
 					visible:false
 				});
@@ -59,10 +65,16 @@
 			//获取最后选择的省市区的值
 			chosedVal() {
 				this.type = 1;
+				const provinceCode = this.getTarId(this.provinceName);
+				const cityCode = this.getTarId(this.cityName);
+				const townCode = this.getTarId(this.townName);
 				this.$emit("choseVal",{
 					provice:this.provinceName,
+					provinceCode,
 					city:this.cityName,
+					cityCode,
 					town:this.townName,
+					townCode,
 					isChose:1,
 					visible:false
 				});

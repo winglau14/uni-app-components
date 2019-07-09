@@ -27,7 +27,7 @@
 </template>
 
 <script>
-	import {lotusAddressJson} from  "./Winglau14-lotusAddress.js";
+	import {lotusAddressJson} from  "./lotusAddressJson.js";
 	export default {
 		props:['lotusAddressData'],
 		data() {
@@ -51,6 +51,7 @@
 				const provinceCode = this.getTarId(this.provinceName);
 				const cityCode = this.getTarId(this.cityName);
 				const townCode = this.getTarId(this.townName);
+				this.visible = false;
 				this.$emit("choseVal",{
 					provice:this.provinceName,
 					provinceCode,
@@ -68,6 +69,7 @@
 				const provinceCode = this.getTarId(this.provinceName);
 				const cityCode = this.getTarId(this.cityName);
 				const townCode = this.getTarId(this.townName);
+				this.visible = false;
 				this.$emit("choseVal",{
 					provice:this.provinceName,
 					provinceCode,
@@ -93,7 +95,6 @@
 			//获取市数据
 			getCityArr(parentId){
 			    let city = [];
-				
 			    lotusAddressJson.map((item,index)=>{
 			        if(item.parent === parentId){
 			            city.push(item.name);
@@ -113,7 +114,6 @@
 			},
 			//初始化数据
 			initFn(){
-				console.log(1);
 			    lotusAddressJson.map((item,index)=>{
 			        if(index<=34){
 			            this.province.push(item.name);
@@ -123,18 +123,29 @@
 				const p = this._props.lotusAddressData.provinceName;
 				const c = this._props.lotusAddressData.cityName;
 				const t = this._props.lotusAddressData.townName;
+				//已选省
 				if(p){
 					this.pChoseIndex = this.getTarIndex(this.province,p);
 				}
+				//已选市
 				if(p&&c){
 					const pid = this.getTarId(p);
 					this.city = this.getCityArr(pid);
 					this.cChoseIndex = this.getTarIndex(this.city,c);
 				}
+				//已选区
 				if(p&&c&&t){
 					const cid= this.getTarId(c);
 					this.town = this.getTownArr(cid);
 					this.tChoseIndex = this.getTarIndex(this.town,t);
+				}
+				//未选省市区
+				if(!p&&!c&&!t){
+					this.pChoseIndex = -1;
+					this.cChoseIndex = -1;
+					this.tChoseIndex = -1;
+					this.city = [];
+					this.town = [];
 				}
 			},
 			//获取已选省市区
@@ -191,15 +202,11 @@
 			    return cIndex;
 			}
 		},
-		created() {
-			this.provinceName = this._props.lotusAddressData.provinceName;
-			this.cityName = this._props.lotusAddressData.cityName;
-			this.townName = this._props.lotusAddressData.townName;
-		},
 		computed:{
 			checkStatus(){
 				let t = null;
 				const _this = this;
+				
 				if(!_this.visible){
 					_this.initFn();
 					_this.visible = _this._props.lotusAddressData.visible;
@@ -212,5 +219,5 @@
 </script>
 
 <style lang="less">
-@import "./Winglau14-lotusAddress.css";
+@import "./lotusAddress.less";
 </style>

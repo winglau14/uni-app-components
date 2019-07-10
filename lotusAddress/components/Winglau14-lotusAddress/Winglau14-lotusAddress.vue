@@ -1,7 +1,7 @@
 <template>
 	<!--地址picker-->
 	<view :status="checkStatus" v-if="lotusAddressData.visible" class="lotus-address-mask">
-		<view class="lotus-address-box">
+		<view :class="lotusAddressData.visible?'lotus-address-box':'lotus-address-box lotus-address-box-out'">
 			<view class="lotus-address-action">
 				<text @tap="cancelPicker" class="lotus-address-action-cancel">取消</text>
 				<text @tap="chosedVal" class="lotus-address-action-affirm">确认</text>
@@ -42,7 +42,7 @@
 				type:0,//0新增1编辑
 				pChoseIndex:-1,
 				cChoseIndex:-1,
-				tChoseIndex:-1,
+				tChoseIndex:-1
 			};
 		},
 		methods:{
@@ -70,6 +70,11 @@
 				const cityCode = this.getTarId(this.cityName);
 				const townCode = this.getTarId(this.townName);
 				this.visible = false;
+				let isChose = 0;
+				//已选省市区 isChose = 1 
+				if((this.provinceName&&this.cityName)||(this.provinceName&&this.cityName&&this.townName)){
+					isChose = 1;
+				}
 				this.$emit("choseVal",{
 					provice:this.provinceName,
 					provinceCode,
@@ -77,7 +82,7 @@
 					cityCode,
 					town:this.townName,
 					townCode,
-					isChose:1,
+					isChose,
 					visible:false
 				});
 			},
@@ -206,10 +211,14 @@
 			checkStatus(){
 				let t = null;
 				const _this = this;
-				
 				if(!_this.visible){
-					_this.initFn();
 					_this.visible = _this._props.lotusAddressData.visible;
+					//获取省市区
+					_this.provinceName = _this._props.lotusAddressData.provinceName;
+					_this.cityName = _this._props.lotusAddressData.cityName;
+					_this.townName = _this._props.lotusAddressData.townName;
+					//生成初始化数据
+					_this.initFn();
 					t = _this.visible;
 				}
 				return t;

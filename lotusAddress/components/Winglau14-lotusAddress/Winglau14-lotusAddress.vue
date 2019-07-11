@@ -228,5 +228,5 @@
 </script>
 
 <style lang="less">
-@import "./lotusAddress.less";
+@import "./Winglau14-lotusAddress.css";
 </style>

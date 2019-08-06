@@ -119,6 +119,7 @@
 			},
 			//初始化数据
 			initFn(){
+				this.province = [];
 			    lotusAddressJson.map((item,index)=>{
 			        if(index<=34){
 			            this.province.push(item.name);

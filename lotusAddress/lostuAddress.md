@@ -21,9 +21,9 @@
         return {
             lotusAddressData:{
                 visible:false,
-                provinceName:'广东省',
-                cityName:'广州市',
-                townName:'天河区',
+                provinceName:'',
+                cityName:'',
+                townName:'',
             },
 			region:''
         }
@@ -39,6 +39,9 @@
         //打开picker
         openPicker() {
             this.lotusAddressData.visible = true;
+            this.lotusAddressData.provinceName = '广东省';
+			this.lotusAddressData.cityName = '广州市';
+			this.lotusAddressData.townName = '白云区';
         },
         //回传已选的省市区的值
         choseValue(res){
@@ -47,10 +50,10 @@
             this.lotusAddressData.visible = res.visible;//visible为显示与关闭组件标识true显示false隐藏
             //res.isChose = 1省市区已选 res.isChose = 0;未选
             if(res.isChose){
-                this.lotusAddressData.provinceName = res.provice;//省
+                this.lotusAddressData.provinceName = res.province;//省
                 this.lotusAddressData.cityName = res.city;//市
                 this.lotusAddressData.townName = res.town;//区
-                this.region = `${res.provice} ${res.city} ${res.town}`; //region为已选的省市区的值
+                this.region = `${res.province} ${res.city} ${res.town}`; //region为已选的省市区的值
             }
         }
     }

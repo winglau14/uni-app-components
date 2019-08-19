@@ -53,7 +53,7 @@
 				const townCode = this.getTarId(this.townName);
 				this.visible = false;
 				this.$emit("choseVal",{
-					provice:this.provinceName,
+					province:this.provinceName,
 					provinceCode,
 					city:this.cityName,
 					cityCode,
@@ -71,12 +71,12 @@
 				const townCode = this.getTarId(this.townName);
 				this.visible = false;
 				let isChose = 0;
-				//已选省市区 isChose = 1 
+				//已选省市区 isChose = 1
 				if((this.provinceName&&this.cityName)||(this.provinceName&&this.cityName&&this.townName)){
 					isChose = 1;
 				}
 				this.$emit("choseVal",{
-					provice:this.provinceName,
+					province:this.provinceName,
 					provinceCode,
 					city:this.cityName,
 					cityCode,
@@ -89,7 +89,6 @@
 			//获取省市区value
 			getTarId(name,type){
 			    let id = 0;
-				const _this = this;
 			    lotusAddressJson.map((item,index)=>{
 			        if(item.name === name){
 			            id = item.value;
@@ -119,12 +118,13 @@
 			},
 			//初始化数据
 			initFn(){
-				this.province = [];
-			    lotusAddressJson.map((item,index)=>{
-			        if(index<=34){
-			            this.province.push(item.name);
-			        }
-			    });
+				if(!this.province.length){
+					lotusAddressJson.map((item,index)=>{
+						if(index<=34){
+							this.province.push(item.name);
+						}
+					});
+				}
 				//已选择省市区，高亮显示对应选择省市区
 				const p = this._props.lotusAddressData.provinceName;
 				const c = this._props.lotusAddressData.cityName;
@@ -156,7 +156,7 @@
 			},
 			//获取已选省市区
 			getChosedData(){
-				const pid = this.getTarId(this.provinceName,'provice');
+				const pid = this.getTarId(this.provinceName,'province');
 				this.city = this.getCityArr(pid);
 				const cid= this.getTarId(this.cityName,'city');
 				this.town = this.getTownArr(cid);
